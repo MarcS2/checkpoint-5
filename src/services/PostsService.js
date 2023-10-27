@@ -14,7 +14,13 @@ class PostsService {
     logger.log('[AppState] getPosts() posts in AppState', AppState.posts)
   }
 
-  async likePost(postData, userId) {
+
+  async getPostByCreatorId(creatorId) {
+    const res = await api.get(`api/profiles/${creatorId}/posts`)
+    logger.log('got posts by creator id, got posts', res.data)
+  }
+
+  async likePost(postData,) {
 
     await api.post(`api/posts/${postData.postId}/like`)
     if (postData.postId)

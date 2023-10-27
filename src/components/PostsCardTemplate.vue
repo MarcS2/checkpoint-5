@@ -11,9 +11,9 @@
     </div>
     <p class="ms-3">{{ postData.body }}</p>
     <div class="text-end">
-      <button @click="likePost()" class="btn mb-2 ">
+      <button @click="likePost(postData, account.id)" class="btn mb-2 ">
         <!-- TODO get button switching based off if post liked or not -->
-        <!-- <i  class="mdi mdi-heart-outline"></i> -->
+        <!-- <i class="mdi mdi-heart-outline"></i> -->
         <i class="mdi mdi-heart"></i>
       </button>
 
@@ -26,14 +26,28 @@
 import { AppState } from '../AppState';
 import { computed, reactive, onMounted } from 'vue';
 import { Post } from "../models/Post";
+import Pop from "../utils/Pop";
+import { postsService } from "../services/PostsService";
 export default {
   props: {
     postData: { type: Post, required: true }
   },
   setup() {
     return {
-      async likePost() {
 
+      account: computed(() => AppState.account),
+      async likePost(postData, userId) {
+        try {
+          if (!this.account) {
+            Pop.error('You must be logged in to like a post.')
+            return
+          }
+
+
+          await postsService.likePost(postData, userId)
+        } catch (error) {
+          Pop.error(error)
+        }
       }
     }
   }

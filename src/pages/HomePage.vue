@@ -1,20 +1,40 @@
 <template>
-  <div class="home flex-grow-1 d-flex flex-column align-items-center justify-content-center">
-    <div class="home-card p-5 bg-white rounded elevation-3">
-      <img src="https://bcw.blob.core.windows.net/public/img/8600856373152463" alt="CodeWorks Logo"
-        class="rounded-circle">
-      <h1 class="my-5 bg-dark text-white p-3 rounded text-center">
-        Vue 3 Starter
-      </h1>
+  <!-- TODO make form component -->
+  <section class="row">
+    <div v-for="post in posts" :key="post.postId" class="col-12">
+      <PostsCardTemplate :postData="post" />
     </div>
-  </div>
+  </section>
+  <PaginationComponent :previous="previous" :next="next" />
 </template>
 
 <script>
+import { computed, onMounted } from "vue";
+import Pop from "../utils/Pop";
+import { postsService } from "../services/PostsService"
+import { AppState } from "../AppState"
+import PaginationComponent from "../components/PaginationComponent.vue";
+
 export default {
   setup() {
-    return {}
-  }
+    onMounted(() => {
+      getPosts();
+    });
+    async function getPosts() {
+      try {
+        await postsService.getPosts();
+      }
+      catch (error) {
+        Pop.error(error);
+      }
+    }
+    return {
+      posts: computed(() => AppState.posts),
+      previous: computed(() => AppState.previousPage),
+      next: computed(() => AppState.nextPage)
+    };
+  },
+  components: { PaginationComponent }
 }
 </script>
 

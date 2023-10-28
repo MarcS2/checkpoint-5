@@ -16,17 +16,28 @@
 
         </li>
       </ul>
+      <button v-if="account" type="button" class="btn btn-outline-dark text-light me-4" data-bs-toggle="modal"
+        data-bs-target="#form-modal">
+        <p class="d-inline fs-4">Post</p>
+        <i class="mdi mdi-plus"></i>
+
+      </button>
       <!-- LOGIN COMPONENT HERE -->
       <Login />
     </div>
   </nav>
+  <FormModal />
 </template>
 
 <script>
+import { computed } from "vue";
 import Login from './Login.vue';
+import { AppState } from "../AppState";
 export default {
   setup() {
-    return {}
+    return {
+      account: computed(() => AppState.account)
+    }
   },
   components: { Login }
 }

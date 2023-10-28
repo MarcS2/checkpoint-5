@@ -4,11 +4,11 @@
   </header>
   <main class="bg-dark">
     <div class="container-fluid">
-      <section class="row">
+      <section class="row ">
 
         <!-- SECTION Router View -->
 
-        <div class="col-9">
+        <div class="col-8">
           <router-view />
 
         </div>
@@ -17,7 +17,7 @@
 
         <!-- SECTION ads -->
 
-        <div class="col-3">
+        <div class="col-4">
           <section class="row mt-3">
             <div v-for="ad in ads" :key="ad.title" class="col-12">
               <AdHandler :ad="ad" />

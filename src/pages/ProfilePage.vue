@@ -40,11 +40,11 @@
 
       </section>
     </div>
-    <!-- SECTION PostsCard template goes here for the active profiles posts -->
+
     <div v-for="post in posts" :key="post.postId" class="col-12">
       <PostsCardTemplate :postData="post" />
+
     </div>
-    <!-- !SECTION -->
   </section>
   <PaginationComponent :previous="previous" :next="next" />
 </template>
@@ -61,13 +61,17 @@ import { profilesService } from "../services/ProfilesService"
 export default {
   setup() {
     const route = useRoute()
+
     const creatorId = route.params.profileId
     onMounted(() => {
       getPostByCreatorId()
       getProfileById()
+      logger.log('route test', route.fullPath)
     })
     onUnmounted(() => {
       profilesService.clearData()
+      logger.log('test route', route.fullPath)
+
     })
     async function getProfileById() {
       try {

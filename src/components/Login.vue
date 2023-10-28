@@ -33,9 +33,11 @@
 import { computed } from 'vue'
 import { AppState } from '../AppState'
 import { AuthService } from '../services/AuthService'
+import { accountService } from "../services/AccountService"
 export default {
   setup() {
     return {
+
       user: computed(() => AppState.user),
       account: computed(() => AppState.account),
       async login() {
@@ -43,7 +45,8 @@ export default {
       },
       async logout() {
         AuthService.logout({ returnTo: window.location.origin })
-      }
+      },
+
     }
   }
 }

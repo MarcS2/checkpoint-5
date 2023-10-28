@@ -1,7 +1,7 @@
 <template>
-  <div class="mb-3">
+  <div class="mb-3 text-center">
     <a href="https://boisecodeworks.com/" class="ms-4 ">
-      <img :src="ad.imgUrl" :alt="ad.title">
+      <img class="img-fluid" :src="ad.imgUrl" :alt="ad.title">
 
     </a>
 

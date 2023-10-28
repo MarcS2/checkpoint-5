@@ -7,10 +7,12 @@
 </template>
 
 <script>
-import { computed } from 'vue';
+import { computed, onUnmounted } from 'vue';
 import { AppState } from '../AppState';
+import { accountService } from "../services/AccountService";
 export default {
   setup() {
+
     return {
       account: computed(() => AppState.account)
     }

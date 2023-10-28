@@ -1,12 +1,20 @@
 <template>
-  <section class="row ms-3 mt-3 border border-dark border-2 shadow bg-light rounded ">
-    <div class="col-12">
+  <section v-if="postData" class="row ms-3 mt-3 border border-dark border-2 shadow bg-light rounded ">
+    <div class="col-6">
       <router-link :to="{ name: 'Profile', params: { profileId: postData.creator.id } }">
         <img class="rounded-circle img-pfp mt-2 ms-3 " :src="postData.creator.picture" :alt="postData.creator.name">
       </router-link>
       <p class="d-inline ms-2 fs-4">{{ postData.creator.name }}</p>
       <p class="fs-6 d-inline ms-3">{{ postData.createdAt.toLocaleString() }}</p>
-      <i v-if="postData.creator.graduated" class="mdi mdi-account-school ms-2"></i>
+      <i v-if="postData.creator.graduated" class="mdi mdi-account-school ms-2 d-inline"></i>
+    </div>
+
+    <div class="col-6 text-end">
+      <div v-if="profile">
+
+        <button v-if="profile.id == account.id" @click="deletePost(postData.postId)"
+          class="btn btn-outline-danger mt-3 me-4" title="Delete Post"><i class="mdi mdi-delete"></i></button>
+      </div>
     </div>
     <div v-if="postData.imgUrl" class="col-12">
       <img :src="postData.imgUrl" class="img-post p-2 px-3" alt="">
@@ -38,6 +46,7 @@ export default {
     return {
 
       account: computed(() => AppState.account),
+      profile: computed(() => AppState.profile),
       async likePost(postData,) {
         try {
           if (!this.account) {
@@ -50,7 +59,20 @@ export default {
         } catch (error) {
           Pop.error(error)
         }
+      },
+      async deletePost(postId) {
+        try {
+          const wantsToDelete = await Pop.confirm('Are you sure you want to delete this post?')
+          if (!wantsToDelete) {
+            return
+          }
+          await postsService.deletePost(postId)
+          Pop.success('Your post has been deleted')
+        } catch (error) {
+          Pop.error(error)
+        }
       }
+
     }
   }
 };

@@ -67,6 +67,7 @@ export default {
       getPostByCreatorId()
       getProfileById()
       logger.log('route test', route.fullPath)
+      window.scrollTo(0, 0)
     })
     onUnmounted(() => {
       profilesService.clearData()

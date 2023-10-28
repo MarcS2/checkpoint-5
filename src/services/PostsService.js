@@ -30,6 +30,25 @@ class PostsService {
       logger.log(postData.likeIds)
   }
 
+  async createPost(formData) {
+    const res = await api.post('api/posts', formData)
+    const post = new Post(res.data)
+    const postsAry = AppState.posts
+    AppState.posts = [post, ...postsAry]
+    logger.log('[postsService] createPost() post created', post)
+    Pop.success('Post Created')
+  }
+
+
+  async deletePost(postId) {
+    await api.delete(`api/posts/${postId}`)
+    const foundPostIndex = AppState.posts.findIndex(post => post.postId == postId)
+    logger.log('[postsService] deletePost() deleted post', foundPostIndex)
+
+    AppState.posts.splice(foundPostIndex, 1)
+
+  }
+
 
   async changePage(url) {
     const res = await api.get(url)

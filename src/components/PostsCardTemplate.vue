@@ -1,5 +1,5 @@
 <template>
-  <section class="row ms-3 mt-3 border border-dark border-2 shadow  ">
+  <section class="row ms-3 mt-3 border border-dark border-2 shadow bg-light rounded ">
     <div class="col-12">
       <router-link :to="{ name: 'Profile', params: { profileId: postData.creator.id } }">
         <img class="rounded-circle img-pfp mt-2 ms-3 " :src="postData.creator.picture" :alt="postData.creator.name">
@@ -11,7 +11,7 @@
     <div v-if="postData.imgUrl" class="col-12">
       <img :src="postData.imgUrl" class="img-post p-2 px-3" alt="">
     </div>
-    <p class="ms-3">{{ postData.body }}</p>
+    <p class="ms-3 fs-5">{{ postData.body }}</p>
     <div class="text-end">
       <button @click="likePost(postData,)" class="btn mb-2 ">
         <!-- TODO get button switching based off if post liked or not -->

@@ -1,8 +1,8 @@
 <template>
-  <nav class="navbar navbar-expand-lg navbar-dark bg-dark px-3">
-    <router-link class="navbar-brand d-flex" :to="{ name: 'Home' }">
+  <nav class="navbar navbar-expand-lg nav-color px-3 ">
+    <router-link class="navbar-brand " :to="{ name: 'Home' }">
       <div class="d-flex flex-column align-items-center">
-        <i class="mdi mdi-lan fs-2"> The Network</i>
+        <i class="mdi mdi-lan fs-2 text-light"> The Network</i>
 
       </div>
     </router-link>
@@ -45,6 +45,11 @@ a:hover {
   border-bottom: 2px solid var(--bs-success);
   border-bottom-left-radius: 0;
   border-bottom-right-radius: 0;
+}
+
+
+.nav-color {
+  background-color: rgb(65, 4, 4);
 }
 
 @media screen and (min-width: 768px) {

@@ -2,7 +2,7 @@
   <header>
     <Navbar />
   </header>
-  <main>
+  <main class="bg-dark">
     <div class="container-fluid">
       <section class="row">
 
@@ -29,8 +29,6 @@
       </section>
     </div>
   </main>
-  <footer>
-  </footer>
 </template>
 
 <script>

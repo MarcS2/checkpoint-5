@@ -1,10 +1,10 @@
 <template>
   <section class="row ms-3 mt-2">
-    <div class="col-12 d-flex justify-content-between">
-      <button @click="changePage(previous)" :disabled="!previous" class="btn btn-outline-dark text-start">
+    <div class="col-12 d-flex justify-content-between mb-3">
+      <button @click="changePage(previous)" :disabled="!previous" class="btn btn-outline-primary text-start text-light">
         Previous
       </button>
-      <button @click="changePage(next)" :disabled="!next" class="btn btn-outline-dark text-end ">
+      <button @click="changePage(next)" :disabled="!next" class="btn btn-outline-primary text-end text-light">
         Next
       </button>
     </div>

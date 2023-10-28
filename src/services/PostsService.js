@@ -18,6 +18,9 @@ class PostsService {
   async getPostByCreatorId(creatorId) {
     const res = await api.get(`api/profiles/${creatorId}/posts`)
     logger.log('got posts by creator id, got posts', res.data)
+    AppState.posts = res.data.posts.map(pojo => new Post(pojo))
+    AppState.nextPage = res.data.older
+    AppState.previousPage = res.data.newer
   }
 
   async likePost(postData,) {

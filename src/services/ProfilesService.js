@@ -12,6 +12,8 @@ class ProfilesService {
 
   clearData() {
     AppState.profile = null
+    AppState.nextPage = null
+    AppState.previousPage = null
   }
 }
 

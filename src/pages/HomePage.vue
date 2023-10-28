@@ -1,7 +1,7 @@
 <template>
   <!-- TODO make form component -->
-  <section class="row">
-    <div v-for="post in posts" :key="post.postId" class="col-12">
+  <section class="row ">
+    <div v-for="post in posts" :key="post.postId" class="col-12 ">
       <PostsCardTemplate :postData="post" />
     </div>
   </section>
@@ -48,6 +48,7 @@ export default {
 
   .home-card {
     width: 50vw;
+
 
     >img {
       height: 200px;

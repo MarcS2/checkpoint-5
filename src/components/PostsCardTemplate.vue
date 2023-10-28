@@ -45,25 +45,23 @@ export default {
     postData: { type: Post, required: true }
   },
   setup(props) {
-    const liked = ref(false);
-    onMounted(() => {
-      liked.value = this.isLiked(props.postData, this.account.id)
-    })
+    const liked = ref(this.isLiked(props.postData, this.account.id));
+
     return {
-      liked,
+      // liked,
       account: computed(() => AppState.account),
       profile: computed(() => AppState.profile),
 
-      isLiked(postData, creatorId) {
-        let liked = false;
-        postData.likeIds.forEach(likeId => {
-          if (likeId == creatorId) {
-            liked = true;
-            return
-          }
-        })
-        return liked
-      },
+      // isLiked(postData, creatorId) {
+      //   let liked = false;
+      //   postData.likeIds.forEach(likeId => {
+      //     if (likeId == creatorId) {
+      //       liked = true;
+      //       return
+      //     }
+      //   })
+      //   return liked
+      // },
 
       async likePost(postData,) {
         try {

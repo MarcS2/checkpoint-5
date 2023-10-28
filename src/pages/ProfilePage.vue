@@ -52,7 +52,7 @@
 
 <script>
 import { AppState } from '../AppState';
-import { computed, reactive, onMounted, onUnmounted } from 'vue';
+import { computed, reactive, onMounted, onUnmounted, onBeforeMount } from 'vue';
 import Pop from "../utils/Pop";
 import { postsService } from "../services/PostsService";
 import { useRoute } from "vue-router";
@@ -63,9 +63,10 @@ export default {
     const route = useRoute()
 
     const creatorId = route.params.profileId
+
     onMounted(() => {
-      getPostByCreatorId()
       getProfileById()
+      getPostByCreatorId()
       logger.log('route test', route.fullPath)
       window.scrollTo(0, 0)
     })

@@ -20,12 +20,17 @@
     <div v-if="postData.imgUrl" class="col-12">
       <img :src="postData.imgUrl" class="img-post p-2 px-3" alt="">
     </div>
-    <p class="ms-3 fs-5">{{ postData.body }}</p>
-    <div v-if="account" class="text-end">
-      <button @click="likePost(postData)" class="btn mb-2 ">
+    <p class="ms-3 fs-5 mb-0">{{ postData.body }}</p>
+    <div v-if="account" class="text-end ">
+      <button @click="likePost(postData)" class="btn mb-2 ms-2 mt-0">
         <!-- TODO get button switching based off if post liked or not -->
-        <!-- <i v-if="liked.value" class="mdi mdi-heart"></i>
-        <i v-else class="mdi mdi-heart-outline"></i> -->
+        <i class="mdi mdi-heart">
+          <span class="mdi-font ms-1">
+            {{ postData.likeIds.length }}
+          </span>
+        </i>
+
+        <!-- <i v-else class="mdi mdi-heart-outline"></i> -->
       </button>
 
     </div>
@@ -44,8 +49,8 @@ export default {
   props: {
     postData: { type: Post, required: true }
   },
-  setup(props) {
-    const liked = ref(this.isLiked(props.postData, this.account.id));
+  setup() {
+
 
     return {
       // liked,
@@ -63,21 +68,20 @@ export default {
       //   return liked
       // },
 
-      async likePost(postData,) {
+      async likePost(postData) {
         try {
           if (!this.account) {
             Pop.error('You must be logged in to like a post.')
             return
           }
           await postsService.likePost(postData,)
-          Pop.success('button Clicked')
-          if (this.isLiked(postData, this.account.id)) {
-            liked.value = false
-            Pop.success('Disliked Post')
-          } else if (!this.isLiked(postData, this.account.id)) {
-            liked.value = true
-            Pop.success('Post Liked')
-          }
+          // if (this.isLiked(postData, this.account.id)) {
+          //   liked.value = false
+          //   Pop.success('Disliked Post')
+          // } else if (!this.isLiked(postData, this.account.id)) {
+          //   liked.value = true
+          //   Pop.success('Post Liked')
+          // }
         } catch (error) {
           Pop.error(error)
         }
@@ -108,6 +112,11 @@ export default {
   height: 3.5rem;
   width: 3.5rem;
 }
+
+.mdi-font {
+  font-style: normal;
+}
+
 
 .img-post {
   padding-left: 5rem;

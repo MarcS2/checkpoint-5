@@ -26,8 +26,8 @@ class PostsService {
   async likePost(postData,) {
 
     await api.post(`api/posts/${postData.postId}/like`)
-    if (postData.postId)
-      logger.log(postData.likeIds)
+
+    logger.log(postData.likeIds)
   }
 
   async createPost(formData) {
@@ -49,7 +49,6 @@ class PostsService {
 
   }
 
-
   async changePage(url) {
     const res = await api.get(url)
     AppState.nextPage = res.data.older
@@ -58,6 +57,18 @@ class PostsService {
     AppState.posts = posts
     window.scrollTo(0, 0)
   }
+
+  async getPostsByQuery(query) {
+
+    AppState.posts = []
+    const res = await api.get(`api/posts?query=${query}`)
+    logger.log('[PostsService] getPostsByQuery(), res.data', res.data)
+    AppState.posts = res.data.posts.map(pojo => new Post(pojo))
+    logger.log('[PostsService] getPostsByQuery(), AppState.posts', AppState.posts)
+
+  }
+
+
 }
 
 export const postsService = new PostsService()

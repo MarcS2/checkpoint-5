@@ -6,6 +6,15 @@
 
       </div>
     </router-link>
+
+
+    <router-link :to="{ name: 'Search' }">
+      <div class="text-center mt-2">
+        <i class="mdi mdi-magnify fs-2 ms-3 text-light"></i>
+
+      </div>
+      <!-- <p>SEARCH</p> -->
+    </router-link>
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarText"
       aria-controls="navbarText" aria-expanded="false" aria-label="Toggle navigation">
       <span class="navbar-toggler-icon"></span>

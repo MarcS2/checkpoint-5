@@ -13,6 +13,12 @@ class AccountService {
     }
   }
 
+  async editAccount(formData) {
+    const res = await api.put('/account', formData)
+    logger.log('[AccountService] editAccount() account updated', res.data)
+    return res.data
+  }
+
 
 }
 

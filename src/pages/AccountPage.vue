@@ -62,7 +62,7 @@
             </div>
           </div>
           <div class="col-12 text-end">
-            <button type="submit" class="btn btn-outline-light">Submit</button>
+            <button type="submit" class="btn btn-outline-light">Save</button>
           </div>
 
         </section>
@@ -112,6 +112,7 @@ export default {
           const formData = editable.value
           const res = await accountService.editAccount(formData)
           editable.value = res
+          Pop.success('Your Changes Have Been Saved')
         } catch (error) {
           Pop.error(error)
         }

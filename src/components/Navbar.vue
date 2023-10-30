@@ -10,7 +10,7 @@
 
     <router-link :to="{ name: 'Search' }">
       <div class="text-center mt-2">
-        <i class="mdi mdi-magnify fs-2 ms-3 text-light"></i>
+        <i class="mdi mdi-magnify fs-2 ms-3 text-light" role="button" title="Search Page"></i>
 
       </div>
       <!-- <p>SEARCH</p> -->

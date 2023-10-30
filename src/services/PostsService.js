@@ -5,7 +5,7 @@ import { Post } from "../models/Post"
 import Pop from "../utils/Pop";
 class PostsService {
   async getPosts() {
-    const res = await api.get('api/posts')
+    const res = await api.get('api/posts/')
     logger.log('[PostsService] getPosts() got posts', res.data)
     const posts = res.data.posts.map(pojo => new Post(pojo))
     AppState.posts = posts

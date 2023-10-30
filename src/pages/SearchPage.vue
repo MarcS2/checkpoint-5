@@ -5,13 +5,14 @@
 
         <form @submit.prevent="getPostsByQuery(editable.query)" class="row align-items-center">
           <div class="col-11">
-            <div class="mb-3 mt-4">
+            <div class="mb-3 mt-4 ms-3">
               <input v-model="editable.query" type="text" placeholder="Search" class="form-control"
                 id="exampleInputEmail1" aria-describedby="emailHelp">
             </div>
           </div>
-          <div class="col-1">
-            <button class="btn btn-outline-dark " type="submit"><i class="mdi mdi-magnify text-light "></i></button>
+          <div class="col-1 text-end">
+            <button class="btn btn-outline-dark fs-5 mt-2" type="submit"><i
+                class="mdi mdi-magnify text-light "></i></button>
 
           </div>
         </form>
